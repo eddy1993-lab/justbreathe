@@ -1,0 +1,2426 @@
+@import "tailwindcss";
+
+:root {
+  --background: #98b3dc;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =====================================================
+   TARJETAS DE CURSOS
+===================================================== */
+
+.clases-header {
+  text-align: center;
+}
+
+.titulo-seccion {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #355c4a;
+  margin: 50px 0 12px;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.titulo-seccion::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  margin: 14px auto 0;
+  background: #9bbf9f;
+  border-radius: 10px;
+}
+
+.clases-header > p {
+  text-align: center;
+  color: #68756d;
+  font-size: 1.1rem;
+  margin: 0 auto 40px;
+  max-width: 650px;
+  line-height: 1.6;
+}
+
+.cursos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(350px, 1fr));
+  gap: 35px;
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.curso-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  padding: 25px;
+
+  background: #fff;
+  border-radius: 20px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+  text-decoration: none;
+  color: inherit;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.curso-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
+}
+
+.curso-info {
+  flex: 1;
+}
+
+.curso-info h3 {
+  font-size: 2rem;
+  color: #2e5d50;
+  margin-bottom: 15px;
+}
+
+.curso-info p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.curso-img {
+  width: 260px;
+  height: 200px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+
+/* =====================================================
+   SECCIÓN RESERVAR / OPINIÓN
+===================================================== */
+
+.experiencia-section {
+  margin-top: 70px;
+  padding: 80px 20px;
+  background: linear-gradient(
+    135deg,
+    #dcefe9,
+    #b8d9d1
+  );
+  text-align: center;
+}
+
+.experiencia-contenido {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.experiencia-icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 50px;
+  height: 50px;
+
+  margin-bottom: 20px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.7);
+  color: #39756a;
+
+  font-size: 1.5rem;
+
+  box-shadow: 0 5px 15px rgba(46, 107, 96, 0.12);
+}
+
+.experiencia-contenido h2 {
+  margin: 0 0 15px;
+
+  color: #24574f;
+
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.experiencia-contenido p {
+  max-width: 600px;
+
+  margin: 0 auto 35px;
+
+  color: #365d57;
+
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.experiencia-botones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 15px;
+
+  flex-wrap: wrap;
+}
+
+.boton-reservar,
+.boton-opinion {
+  display: inline-block;
+
+  padding: 15px 30px;
+
+  border-radius: 50px;
+
+  text-decoration: none;
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.boton-reservar {
+  background: #2e6b60;
+  color: white;
+
+  box-shadow: 0 8px 20px rgba(46, 107, 96, 0.25);
+}
+
+.boton-reservar:hover {
+  transform: translateY(-3px);
+
+  background: #24574f;
+
+  box-shadow: 0 12px 25px rgba(46, 107, 96, 0.35);
+}
+
+.boton-opinion {
+  background: white;
+  color: #2e6b60;
+
+  border: 2px solid #9bbf9f;
+
+  box-shadow: 0 5px 15px rgba(46, 107, 96, 0.08);
+}
+
+.boton-opinion:hover {
+  transform: translateY(-3px);
+
+  background: #f5fffc;
+
+  box-shadow: 0 10px 20px rgba(46, 107, 96, 0.15);
+}
+
+
+/* =====================================================
+   YOGA PARA SILLA
+===================================================== */
+
+.yoga-page {
+  min-height: 100vh;
+  color: #23413c;
+}
+
+
+/* ---------- CABECERA ---------- */
+
+.yoga-hero {
+  max-width: 1200px;
+  margin: 40px auto 20px;
+  padding: 70px 40px;
+
+  border-radius: 30px;
+
+  background: linear-gradient(
+    135deg,
+    #dcefe9,
+    #b8d9d1
+  );
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+
+  text-align: center;
+}
+
+.yoga-hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.yoga-eyebrow {
+  display: block;
+
+  margin-bottom: 15px;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  color: #39756a;
+}
+
+.yoga-hero h1 {
+  margin: 0;
+
+  font-size: clamp(3rem, 7vw, 5.5rem);
+
+  line-height: 1;
+
+  text-transform: uppercase;
+
+  color: #24574f;
+}
+
+.yoga-subtitle {
+  max-width: 650px;
+
+  margin: 25px auto 35px;
+
+  font-size: 1.3rem;
+
+  line-height: 1.7;
+
+  color: #365d57;
+}
+
+
+/* ---------- BOTONES ---------- */
+
+.boton-reservar {
+  border: none;
+
+  border-radius: 50px;
+
+  padding: 15px 32px;
+
+  background: #2e6b60;
+
+  color: white;
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(46, 107, 96, 0.25);
+
+  transition: all 0.25s ease;
+}
+
+.boton-reservar:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 12px 25px rgba(46, 107, 96, 0.35);
+}
+
+
+/* ---------- SECCIONES ---------- */
+
+.yoga-section {
+  max-width: 1200px;
+
+  margin: 60px auto;
+
+  padding: 0 25px;
+}
+
+.yoga-container {
+  max-width: 1100px;
+
+  margin: 0 auto;
+}
+
+
+/* ---------- TARJETA PRINCIPAL ---------- */
+
+.yoga-card-main {
+  max-width: 800px;
+
+  margin: 0 auto;
+
+  padding: 45px;
+
+  background: white;
+
+  border-radius: 25px;
+
+  text-align: center;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.yoga-icon {
+  display: block;
+
+  margin-bottom: 15px;
+
+  font-size: 3rem;
+}
+
+.yoga-card-main h2,
+.yoga-section h2,
+.yoga-contacto h2 {
+  margin-bottom: 20px;
+
+  color: #285e54;
+
+  font-size: 2.2rem;
+}
+
+.yoga-card-main p {
+  font-size: 1.1rem;
+
+  line-height: 1.7;
+}
+
+.yoga-highlight {
+  font-size: 1.4rem !important;
+
+  font-weight: 700;
+
+  color: #39756a;
+}
+
+
+/* ---------- MODALIDADES ---------- */
+
+.yoga-section-alt {
+  max-width: none;
+
+  margin: 70px 0;
+
+  padding: 70px 25px;
+
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.yoga-section-alt h2 {
+  text-align: center;
+}
+
+.yoga-section-alt .yoga-eyebrow {
+  text-align: center;
+}
+
+.modalidades-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(250px, 1fr));
+
+  gap: 30px;
+
+  max-width: 900px;
+
+  margin: 40px auto 0;
+}
+
+.modalidad-card {
+  padding: 35px;
+
+  background: white;
+
+  border-radius: 25px;
+
+  text-align: center;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.modalidad-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.modalidad-icon {
+  margin-bottom: 15px;
+
+  font-size: 2.8rem;
+}
+
+.modalidad-card h3 {
+  margin-bottom: 12px;
+
+  color: #2e5d50;
+
+  font-size: 1.4rem;
+}
+
+.modalidad-card p {
+  line-height: 1.6;
+}
+
+
+/* ---------- BLOQUE RESERVA ---------- */
+
+.yoga-reserva {
+  max-width: 1100px;
+
+  margin: 70px auto;
+
+  padding: 70px 30px;
+
+  border-radius: 30px;
+
+  background: linear-gradient(
+    135deg,
+    #8fbeb4,
+    #5d9489
+  );
+
+  text-align: center;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.yoga-reserva .yoga-eyebrow {
+  color: white;
+}
+
+.yoga-reserva h2 {
+  margin-bottom: 15px;
+
+  color: white;
+
+  font-size: 2.5rem;
+}
+
+.yoga-reserva p {
+  margin-bottom: 30px;
+
+  color: white;
+
+  font-size: 1.2rem;
+}
+
+.boton-reservar-grande {
+  background: white;
+
+  color: #2e6b60;
+}
+
+.boton-reservar-grande:hover {
+  background: #f5fffc;
+}
+
+
+/* ---------- CONTACTO ---------- */
+
+.yoga-contacto {
+  max-width: 1000px;
+
+  margin: 80px auto;
+
+  padding: 60px 30px;
+
+  text-align: center;
+}
+
+.yoga-contacto .yoga-eyebrow {
+  text-align: center;
+}
+
+.contacto-intro {
+  max-width: 650px;
+
+  margin: 0 auto 35px;
+
+  font-size: 1.1rem;
+
+  line-height: 1.7;
+}
+
+.contact-form-wrapper {
+  max-width: 700px;
+
+  margin: 35px auto 0;
+
+  padding: 35px;
+
+  background: white;
+
+  border-radius: 25px;
+
+  text-align: left;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =====================================================
+   MÓVIL
+===================================================== */
+
+@media (max-width: 768px) {
+
+  /* ---------- INICIO ---------- */
+
+  .titulo-seccion {
+    font-size: 2rem;
+
+    margin: 35px 15px 12px;
+
+    letter-spacing: 1px;
+  }
+
+  .clases-header > p {
+    padding: 0 20px;
+
+    font-size: 1rem;
+
+    margin-bottom: 30px;
+  }
+
+  .cursos-grid {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+
+    margin: 30px auto;
+
+    padding: 0 15px 30px;
+  }
+
+  .curso-card {
+    flex-direction: column-reverse;
+
+    text-align: center;
+
+    padding: 20px;
+  }
+
+  .curso-info h3 {
+    font-size: 1.6rem;
+  }
+
+  .curso-info p {
+    font-size: 1rem;
+  }
+
+  .curso-img {
+    width: 260px;
+
+    height: 200px;
+
+    border-radius: 15px;
+  }
+
+
+  /* ---------- RESERVAR / OPINIÓN ---------- */
+
+  .experiencia-section {
+    margin-top: 40px;
+
+    padding: 60px 20px;
+  }
+
+  .experiencia-contenido h2 {
+    font-size: 2rem;
+  }
+
+  .experiencia-contenido p {
+    font-size: 1rem;
+  }
+
+  .experiencia-botones {
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  .boton-reservar,
+  .boton-opinion {
+    width: 100%;
+
+    max-width: 300px;
+  }
+
+
+  /* ---------- YOGA HERO ---------- */
+
+  .yoga-hero {
+    margin: 20px 15px;
+
+    padding: 50px 20px;
+
+    border-radius: 22px;
+  }
+
+  .yoga-hero h1 {
+    font-size: 3rem;
+  }
+
+  .yoga-subtitle {
+    font-size: 1.05rem;
+  }
+
+
+  /* ---------- YOGA SECTIONS ---------- */
+
+  .yoga-section {
+    padding: 0 15px;
+  }
+
+  .yoga-card-main {
+    padding: 30px 20px;
+  }
+
+
+  /* ---------- MODALIDADES ---------- */
+
+  .modalidades-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .yoga-section-alt {
+    padding: 50px 15px;
+  }
+
+
+  /* ---------- RESERVA ---------- */
+
+  .yoga-reserva {
+    margin: 50px 15px;
+
+    padding: 50px 20px;
+  }
+
+  .yoga-reserva h2 {
+    font-size: 2rem;
+  }
+
+
+  /* ---------- CONTACTO ---------- */
+
+  .yoga-contacto {
+    padding: 40px 15px;
+  }
+
+  .contact-form-wrapper {
+    padding: 20px;
+  }
+}
+/* =====================================================
+   PÁGINA DE RESERVAS
+===================================================== */
+
+.reserva-page {
+  min-height: 100vh;
+  color: #23413c;
+}
+
+
+/* ---------- HERO ---------- */
+
+.reserva-hero {
+  max-width: 1100px;
+  margin: 40px auto 50px;
+  padding: 70px 30px;
+
+  border-radius: 30px;
+
+  background: linear-gradient(
+    135deg,
+    #dcefe9,
+    #b8d9d1
+  );
+
+  text-align: center;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+.reserva-eyebrow {
+  display: block;
+
+  margin-bottom: 15px;
+
+  color: #39756a;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  letter-spacing: 4px;
+}
+
+.reserva-hero h1 {
+  margin: 0;
+
+  color: #24574f;
+
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+
+  line-height: 1;
+}
+
+.reserva-hero p {
+  max-width: 650px;
+
+  margin: 25px auto 0;
+
+  color: #365d57;
+
+  font-size: 1.15rem;
+
+  line-height: 1.7;
+}
+
+
+/* ---------- FORMULARIO ---------- */
+
+.reserva-section {
+  padding: 0 20px 80px;
+}
+
+.reserva-form-wrapper {
+  max-width: 750px;
+
+  margin: 0 auto;
+
+  padding: 45px;
+
+  background: white;
+
+  border-radius: 25px;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ---------- CABECERA FORMULARIO ---------- */
+
+.reserva-form-header {
+  text-align: center;
+
+  margin-bottom: 35px;
+}
+
+.reserva-icono {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+
+  margin-bottom: 15px;
+
+  background: #dcefe9;
+
+  border-radius: 50%;
+
+  font-size: 1.8rem;
+}
+
+.reserva-form-header h2 {
+  margin: 0 0 10px;
+
+  color: #285e54;
+
+  font-size: 2rem;
+}
+
+.reserva-form-header p {
+  max-width: 550px;
+
+  margin: 0 auto;
+
+  color: #68756d;
+
+  line-height: 1.6;
+}
+
+
+/* ---------- CAMPOS ---------- */
+
+.reserva-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.form-group label {
+  color: #285e54;
+
+  font-size: 0.95rem;
+
+  font-weight: 700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+
+  padding: 14px 16px;
+
+  border: 1px solid #d4e1dc;
+
+  border-radius: 12px;
+
+  background: #f8fbf9;
+
+  color: #23413c;
+
+  font-family: inherit;
+
+  font-size: 1rem;
+
+  outline: none;
+
+  transition:
+    border 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #7eaa9d;
+
+  background: white;
+
+  box-shadow: 0 0 0 3px rgba(126, 170, 157, 0.15);
+}
+
+.form-group textarea {
+  resize: vertical;
+
+  min-height: 110px;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #9aa9a3;
+}
+
+
+/* ---------- FECHA + HORA ---------- */
+
+.form-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 20px;
+}
+
+
+/* ---------- BOTÓN ---------- */
+
+.reserva-submit {
+  width: 100%;
+
+  margin-top: 10px;
+
+  padding: 16px 25px;
+
+  border: none;
+
+  border-radius: 50px;
+
+  background: #2e6b60;
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 1.05rem;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(46, 107, 96, 0.25);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.reserva-submit:hover {
+  transform: translateY(-3px);
+
+  background: #24574f;
+
+  box-shadow: 0 12px 25px rgba(46, 107, 96, 0.35);
+}
+
+
+/* =====================================================
+   CONFIRMACIÓN
+===================================================== */
+
+.reserva-exito {
+  padding: 30px 10px;
+
+  text-align: center;
+}
+
+.exito-icono {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 75px;
+  height: 75px;
+
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
+
+  background: #dcefe9;
+
+  color: #2e6b60;
+
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.reserva-exito h2 {
+  margin-bottom: 15px;
+
+  color: #285e54;
+
+  font-size: 2.2rem;
+}
+
+.reserva-exito p {
+  color: #68756d;
+
+  font-size: 1.05rem;
+
+  line-height: 1.6;
+}
+
+.nueva-reserva {
+  margin-top: 20px;
+
+  padding: 13px 25px;
+
+  border: none;
+
+  border-radius: 50px;
+
+  background: #2e6b60;
+
+  color: white;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.nueva-reserva:hover {
+  background: #24574f;
+
+  transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   MÓVIL
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .reserva-hero {
+    margin: 20px 15px 35px;
+
+    padding: 50px 20px;
+
+    border-radius: 22px;
+  }
+
+  .reserva-hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .reserva-hero p {
+    font-size: 1rem;
+  }
+
+  .reserva-section {
+    padding: 0 15px 50px;
+  }
+
+  .reserva-form-wrapper {
+    padding: 30px 20px;
+
+    border-radius: 20px;
+  }
+
+  .reserva-form-header h2 {
+    font-size: 1.7rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+  .reserva-submit {
+    padding: 15px 20px;
+  }
+}
+/* =====================================================
+   CONTACTO - JUST BREATHE
+===================================================== */
+
+.contacto-page {
+  min-height: 100vh;
+  padding-bottom: 80px;
+  color: #23413c;
+}
+
+
+/* HERO */
+
+.contacto-hero {
+  max-width: 1100px;
+  margin: 40px auto 60px;
+  padding: 70px 30px;
+
+  border-radius: 30px;
+
+  background: linear-gradient(
+    135deg,
+    #dcefe9,
+    #b8d9d1
+  );
+
+  text-align: center;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+.contacto-eyebrow {
+  display: block;
+
+  margin-bottom: 15px;
+
+  color: #39756a;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  letter-spacing: 4px;
+}
+
+.contacto-hero h1 {
+  margin: 0;
+
+  color: #24574f;
+
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+
+  line-height: 1;
+}
+
+.contacto-hero p {
+  max-width: 700px;
+
+  margin: 25px auto 0;
+
+  color: #365d57;
+
+  font-size: 1.15rem;
+
+  line-height: 1.7;
+}
+
+
+/* TARJETAS INFORMACIÓN */
+
+.contacto-info-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+
+  max-width: 1100px;
+
+  margin: 0 auto 60px;
+
+  padding: 0 20px;
+}
+
+.contacto-info-card {
+  padding: 30px 25px;
+
+  border-radius: 22px;
+
+  background: white;
+
+  text-align: center;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.09);
+
+  transition: transform 0.25s ease;
+}
+
+.contacto-info-card:hover {
+  transform: translateY(-5px);
+}
+
+.contacto-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+
+  margin: 0 auto 18px;
+
+  border-radius: 50%;
+
+  background: #dcefe9;
+
+  font-size: 1.7rem;
+}
+
+.contacto-info-card h3 {
+  margin-bottom: 10px;
+
+  color: #285e54;
+
+  font-size: 1.3rem;
+}
+
+.contacto-info-card p {
+  margin-bottom: 12px;
+
+  color: #68756d;
+
+  line-height: 1.6;
+}
+
+.contacto-info-card a {
+  color: #39756a;
+
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+.contacto-info-card a:hover {
+  text-decoration: underline;
+}
+
+
+/* FORMULARIO */
+
+.contacto-form-section {
+  padding: 0 20px;
+}
+
+.contacto-form-wrapper {
+  max-width: 800px;
+
+  margin: 0 auto;
+
+  padding: 45px;
+
+  border-radius: 25px;
+
+  background: white;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.11);
+}
+
+.contacto-form-header {
+  margin-bottom: 35px;
+
+  text-align: center;
+}
+
+.contacto-small-icon {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+
+  margin-bottom: 15px;
+
+  border-radius: 50%;
+
+  background: #dcefe9;
+
+  font-size: 1.7rem;
+}
+
+.contacto-form-header h2 {
+  margin-bottom: 10px;
+
+  color: #285e54;
+
+  font-size: 2rem;
+}
+
+.contacto-form-header p {
+  color: #68756d;
+}
+
+
+/* CAMPOS */
+
+.contacto-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.contacto-form-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 20px;
+}
+
+.contacto-form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.contacto-form-group label {
+  color: #285e54;
+
+  font-weight: 700;
+
+  font-size: 0.95rem;
+}
+
+.contacto-form-group input,
+.contacto-form-group select,
+.contacto-form-group textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 14px 16px;
+
+  border: 1px solid #d4e1dc;
+
+  border-radius: 12px;
+
+  background: #f8fbf9;
+
+  color: #23413c;
+
+  font-family: inherit;
+
+  font-size: 1rem;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.contacto-form-group input:focus,
+.contacto-form-group select:focus,
+.contacto-form-group textarea:focus {
+  border-color: #7eaa9d;
+
+  background: white;
+
+  box-shadow: 0 0 0 3px rgba(126, 170, 157, 0.15);
+}
+
+.contacto-form-group textarea {
+  resize: vertical;
+}
+
+
+/* BOTÓN */
+
+.contacto-submit {
+  margin-top: 5px;
+
+  padding: 16px 25px;
+
+  border: none;
+
+  border-radius: 50px;
+
+  background: #2e6b60;
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 1.05rem;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(46, 107, 96, 0.25);
+
+  transition: 0.25s ease;
+}
+
+.contacto-submit:hover {
+  transform: translateY(-3px);
+
+  background: #24574f;
+
+  box-shadow: 0 12px 25px rgba(46, 107, 96, 0.35);
+}
+
+
+/* ÉXITO */
+
+.contacto-exito {
+  padding: 30px 10px;
+
+  text-align: center;
+}
+
+.contacto-exito-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 75px;
+  height: 75px;
+
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
+
+  background: #dcefe9;
+
+  color: #2e6b60;
+
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.contacto-exito h2 {
+  margin-bottom: 15px;
+
+  color: #285e54;
+
+  font-size: 2.2rem;
+}
+
+.contacto-exito p {
+  color: #68756d;
+
+  line-height: 1.6;
+}
+
+.contacto-nuevo {
+  margin-top: 20px;
+
+  padding: 13px 25px;
+
+  border: none;
+
+  border-radius: 50px;
+
+  background: #2e6b60;
+
+  color: white;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* MÓVIL */
+
+@media (max-width: 768px) {
+
+  .contacto-hero {
+    margin: 20px 15px 40px;
+
+    padding: 50px 20px;
+
+    border-radius: 22px;
+  }
+
+  .contacto-hero h1 {
+    font-size: 2.7rem;
+  }
+
+  .contacto-info-grid {
+    grid-template-columns: 1fr;
+
+    padding: 0 15px;
+  }
+
+  .contacto-form-section {
+    padding: 0 15px;
+  }
+
+  .contacto-form-wrapper {
+    padding: 30px 20px;
+  }
+
+  .contacto-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+/* =====================================================
+   ADMIN - JUST BREATHE
+===================================================== */
+
+.admin-page {
+  min-height: 100vh;
+
+  padding: 40px;
+
+  background: #f4f8f6;
+
+  color: #23413c;
+}
+
+
+/* HEADER */
+
+.admin-header {
+  max-width: 1250px;
+
+  margin: 0 auto 30px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 35px 40px;
+
+  border-radius: 25px;
+
+  background: linear-gradient(
+    135deg,
+    #dcefe9,
+    #b8d9d1
+  );
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.09);
+}
+
+.admin-eyebrow {
+  color: #39756a;
+
+  font-size: 0.8rem;
+
+  font-weight: 700;
+
+  letter-spacing: 3px;
+}
+
+.admin-header h1 {
+  margin: 7px 0;
+
+  color: #24574f;
+
+  font-size: 2.4rem;
+}
+
+.admin-header p {
+  margin: 0;
+
+  color: #55736c;
+}
+
+.admin-avatar {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 65px;
+  height: 65px;
+
+  border-radius: 50%;
+
+  background: #2e6b60;
+
+  color: white;
+
+  font-weight: 700;
+
+  font-size: 1.2rem;
+
+  box-shadow: 0 7px 18px rgba(46, 107, 96, 0.25);
+}
+
+
+/* LAYOUT */
+
+.admin-layout {
+  max-width: 1250px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: 220px 1fr;
+
+  gap: 25px;
+}
+
+
+/* SIDEBAR */
+
+.admin-sidebar {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+  padding: 18px;
+
+  border-radius: 22px;
+
+  background: white;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+
+  align-self: start;
+}
+
+.admin-sidebar button {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 14px 15px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: transparent;
+
+  color: #68756d;
+
+  font-family: inherit;
+
+  font-size: 0.95rem;
+
+  font-weight: 600;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.admin-sidebar button:hover {
+  background: #edf6f3;
+
+  color: #2e6b60;
+}
+
+.admin-sidebar button.activo {
+  background: #2e6b60;
+
+  color: white;
+
+  box-shadow: 0 6px 15px rgba(46, 107, 96, 0.2);
+}
+
+
+/* CONTENT */
+
+.admin-content {
+  min-width: 0;
+}
+
+.admin-title {
+  margin-bottom: 25px;
+}
+
+.admin-title span {
+  color: #39756a;
+
+  font-size: 0.75rem;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+.admin-title h2 {
+  margin: 5px 0 0;
+
+  color: #285e54;
+
+  font-size: 2rem;
+}
+
+
+/* STATS */
+
+.admin-stats {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+}
+
+.admin-stat-card {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 20px;
+
+  border-radius: 18px;
+
+  background: white;
+
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.07);
+}
+
+.admin-stat-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  border-radius: 14px;
+
+  background: #e1f0eb;
+
+  font-size: 1.3rem;
+}
+
+.admin-stat-card span {
+  display: block;
+
+  color: #7a8983;
+
+  font-size: 0.8rem;
+}
+
+.admin-stat-card strong {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #285e54;
+
+  font-size: 1.6rem;
+}
+
+
+/* PANELES */
+
+.admin-panel {
+  padding: 30px;
+
+  border-radius: 22px;
+
+  background: white;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+.admin-panel-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 25px;
+}
+
+.admin-panel-header span {
+  color: #39756a;
+
+  font-size: 0.7rem;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+.admin-panel-header h3 {
+  margin: 5px 0 0;
+
+  color: #285e54;
+
+  font-size: 1.5rem;
+}
+
+.admin-panel-header button {
+  padding: 9px 16px;
+
+  border: none;
+
+  border-radius: 50px;
+
+  background: #e1f0eb;
+
+  color: #2e6b60;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* RESERVAS */
+
+.admin-reserva {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 16px 0;
+
+  border-bottom: 1px solid #edf1ef;
+}
+
+.admin-reserva:last-child {
+  border-bottom: none;
+}
+
+.admin-reserva-date {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 55px;
+  height: 55px;
+
+  border-radius: 14px;
+
+  background: #e1f0eb;
+}
+
+.admin-reserva-date strong {
+  color: #285e54;
+
+  font-size: 1.2rem;
+}
+
+.admin-reserva-date span {
+  color: #668078;
+
+  font-size: 0.65rem;
+
+  font-weight: 700;
+}
+
+.admin-reserva-info {
+  flex: 1;
+}
+
+.admin-reserva-info strong {
+  display: block;
+
+  color: #304f47;
+}
+
+.admin-reserva-info span {
+  color: #7a8983;
+
+  font-size: 0.9rem;
+}
+
+.admin-badge {
+  padding: 7px 12px;
+
+  border-radius: 50px;
+
+  font-size: 0.75rem;
+
+  font-weight: 700;
+}
+
+.admin-badge.pendiente {
+  background: #fff3d6;
+
+  color: #9a741d;
+}
+
+.admin-badge.confirmada {
+  background: #e1f0eb;
+
+  color: #2e6b60;
+}
+
+
+/* CLASES */
+
+.admin-clases {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 15px;
+}
+
+.admin-clase {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 18px;
+
+  border: 1px solid #edf1ef;
+
+  border-radius: 16px;
+
+  transition: 0.2s ease;
+}
+
+.admin-clase:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.admin-clase > span {
+  font-size: 1.8rem;
+}
+
+.admin-clase strong {
+  color: #2e5d50;
+}
+
+.admin-clase p {
+  margin: 4px 0 0;
+
+  color: #7a8983;
+
+  font-size: 0.85rem;
+}
+
+
+/* VACÍO */
+
+.admin-empty {
+  padding: 50px 20px;
+
+  text-align: center;
+}
+
+.admin-empty > div {
+  margin-bottom: 15px;
+
+  font-size: 3rem;
+}
+
+.admin-empty h3 {
+  margin-bottom: 8px;
+
+  color: #285e54;
+}
+
+.admin-empty p {
+  color: #7a8983;
+}
+
+
+/* MÓVIL */
+
+@media (max-width: 900px) {
+
+  .admin-page {
+    padding: 20px 15px;
+  }
+
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .admin-sidebar button {
+    justify-content: center;
+
+    text-align: center;
+  }
+
+  .admin-sidebar button span {
+    display: none;
+  }
+
+  .admin-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-clases {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .admin-header {
+    padding: 25px 20px;
+  }
+
+  .admin-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .admin-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .admin-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-panel {
+    padding: 20px;
+  }
+
+  .admin-reserva {
+    align-items: flex-start;
+  }
+
+  .admin-badge {
+    display: none;
+  }
+}
+.sobre-mi-page {
+  min-height: 100vh;
+  background: #f7f3ed;
+  color: #33443b;
+}
+
+.sobre-mi-hero {
+  min-height: 430px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  text-align: center;
+  background:
+    linear-gradient(
+      rgba(47, 67, 57, 0.58),
+      rgba(47, 67, 57, 0.58)
+    ),
+    url("/yogamayores.jpeg") center / cover;
+}
+
+.sobre-mi-hero-content {
+  max-width: 760px;
+  color: white;
+}
+
+.sobre-mi-hero h1 {
+  margin: 0 0 20px;
+  font-size: clamp(44px, 7vw, 72px);
+  font-weight: 500;
+}
+
+.sobre-mi-hero p {
+  max-width: 650px;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.sobre-mi-intro {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 24px;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.sobre-mi-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+}
+
+.sobre-mi-text .yoga-eyebrow,
+.sobre-mi-header .yoga-eyebrow {
+  color: #9a795d;
+}
+
+.sobre-mi-text h2 {
+  margin: 0 0 25px;
+  font-size: clamp(34px, 5vw, 50px);
+  font-weight: 500;
+}
+
+.sobre-mi-text p {
+  margin: 0 0 20px;
+  color: #68746d;
+  line-height: 1.8;
+}
+
+.sobre-mi-filosofia {
+  padding: 100px 24px;
+  background: #dce4dc;
+  text-align: center;
+}
+
+.sobre-mi-filosofia-content {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.sobre-mi-filosofia h2 {
+  margin: 0 0 20px;
+  font-size: clamp(36px, 5vw, 54px);
+  font-weight: 500;
+}
+
+.sobre-mi-filosofia p {
+  margin: 0;
+  color: #59665f;
+  line-height: 1.8;
+  font-size: 17px;
+}
+
+.sobre-mi-valores {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 24px;
+}
+
+.sobre-mi-header {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.sobre-mi-header h2 {
+  margin: 0;
+  font-size: clamp(34px, 5vw, 48px);
+  font-weight: 500;
+}
+
+.sobre-mi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.sobre-mi-grid article {
+  padding: 35px;
+  border-radius: 20px;
+  background: #fffdf9;
+  box-shadow: 0 8px 30px rgba(51, 68, 59, 0.07);
+}
+
+.sobre-mi-icon {
+  margin-bottom: 25px;
+  color: #b18a68;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.sobre-mi-grid h3 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.sobre-mi-grid p {
+  margin: 0;
+  color: #68746d;
+  line-height: 1.7;
+}
+
+.sobre-mi-cta {
+  max-width: 1050px;
+  margin: 0 auto 80px;
+  padding: 65px 40px;
+  border-radius: 25px;
+  background: #33443b;
+  color: white;
+  text-align: center;
+}
+
+.sobre-mi-cta .yoga-eyebrow {
+  color: #d5b18c;
+}
+
+.sobre-mi-cta h2 {
+  margin: 0 0 15px;
+  font-size: clamp(32px, 5vw, 46px);
+  font-weight: 500;
+}
+
+.sobre-mi-cta p {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  color: #d7ded9;
+  line-height: 1.7;
+}
+
+.sobre-mi-button {
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: 30px;
+  background: white;
+  color: #33443b;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sobre-mi-button:hover {
+  background: #f0ebe3;
+}
+
+@media (max-width: 800px) {
+  .sobre-mi-intro {
+    grid-template-columns: 1fr;
+    gap: 45px;
+    padding: 70px 24px;
+  }
+
+  .sobre-mi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sobre-mi-cta {
+    margin: 0 20px 60px;
+  }
+}
+.admin-login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  background:
+    linear-gradient(
+      rgba(47, 67, 57, 0.72),
+      rgba(47, 67, 57, 0.72)
+    ),
+    url("/yogamayores.jpeg") center / cover;
+}
+
+.admin-login-card {
+  width: 100%;
+  max-width: 430px;
+  padding: 45px;
+  box-sizing: border-box;
+  border-radius: 24px;
+  background: #fffdf9;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+}
+
+.admin-login-header {
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.admin-eyebrow {
+  display: block;
+  margin-bottom: 14px;
+  color: #9a795d;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.admin-login-header h1 {
+  margin: 0 0 10px;
+  color: #33443b;
+  font-size: 38px;
+  font-weight: 500;
+}
+
+.admin-login-header p {
+  margin: 0;
+  color: #68746d;
+  line-height: 1.6;
+}
+
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-form-group label {
+  color: #33443b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.admin-form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  box-sizing: border-box;
+  border: 1px solid #d8ddd8;
+  border-radius: 12px;
+  outline: none;
+  background: white;
+  color: #33443b;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-form-group input:focus {
+  border-color: #8a9d90;
+  box-shadow: 0 0 0 3px rgba(138, 157, 144, 0.15);
+}
+
+.admin-form-group input::placeholder {
+  color: #a7ada9;
+}
+
+.admin-login-button {
+  width: 100%;
+  margin-top: 5px;
+  padding: 15px;
+  border: none;
+  border-radius: 30px;
+  background: #33443b;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.admin-login-button:hover:not(:disabled) {
+  background: #26352d;
+  transform: translateY(-1px);
+}
+
+.admin-login-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.admin-login-error {
+  padding: 12px 14px;
+  border: 1px solid #e7c7c7;
+  border-radius: 10px;
+  background: #fff1f1;
+  color: #a34d4d;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.admin-login-footer {
+  margin: 30px 0 0;
+  text-align: center;
+  color: #9a9f9b;
+  font-size: 12px;
+}
+
+@media (max-width: 500px) {
+  .admin-login-card {
+    padding: 32px 24px;
+  }
+
+  .admin-login-header h1 {
+    font-size: 32px;
+  }
+}

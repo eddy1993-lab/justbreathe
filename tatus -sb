@@ -1,0 +1,10 @@
+* [33m519cae9[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Initial commit
+* [33m8e64ed0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m commit
+* [33m58fb42d[m git add
+* [33m13296c6[m commit
+* [33mffffb7d[m 	modified:   justbreathe/lib/supabase.ts
+* [33m0756b04[m 	modified:   justbreathe/app/admin/page.tsx
+* [33m244fcff[m 	modified:   justbreathe/lib/supabase.ts
+* [33m1a19e0c[m 	modified:   justbreathe/app/reservas/page.tsx 	new file:   justbreathe/lib/supabase.ts 	modified:   justbreathe/package-lock.json 	modified:   justbreathe/package.json
+* [33m3889ebb[m 	modified:   justbreathe/app/login/page.tsx
+* [33m32721ec[m 	modified:   justbreathe/app/globals.css
