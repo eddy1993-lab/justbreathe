@@ -1,69 +1,94 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
-export default function AdminLoginPage() {
+export default function LoginPage() {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [cargando, setCargando] = useState(false);
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function iniciarSesion(e: React.FormEvent) {
     e.preventDefault();
 
+    setCargando(true);
     setError("");
-    setLoading(true);
 
-    try {
-      const response = await fetch("/api/admin/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        setError(data.error || "Correo o contraseña incorrectos");
-        setLoading(false);
-        return;
-      }
-
-      router.push("/admin");
-      router.refresh();
-    } catch {
-      setError("No se ha podido conectar con el servidor.");
-      setLoading(false);
+    if (error) {
+      console.error(error);
+      setError("Email o contraseña incorrectos.");
+      setCargando(false);
+      return;
     }
+
+    router.replace("/admin");
   }
 
   return (
-    <main className="admin-login-page">
-      <div className="admin-login-card">
-        <div className="admin-login-header">
-          <span className="admin-eyebrow">
+    <main
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "20px",
+        background: "#f7f5f0",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "420px",
+          padding: "40px",
+          borderRadius: "20px",
+          background: "#ffffff",
+          boxShadow: "0 10px 40px rgba(0,0,0,0.08)",
+        }}
+      >
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "30px",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "13px",
+              letterSpacing: "2px",
+            }}
+          >
             JUST BREATHE
           </span>
 
-          <h1>Bienvenido/a</h1>
+          <h1
+            style={{
+              marginTop: "10px",
+              marginBottom: "10px",
+            }}
+          >
+            Acceso privado
+          </h1>
 
           <p>
-            Accede al panel de administración.
+            Inicia sesión para acceder al panel de administración.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="admin-login-form">
-          <div className="admin-form-group">
+        <form onSubmit={iniciarSesion}>
+
+          <div style={{ marginBottom: "18px" }}>
+
             <label htmlFor="email">
-              Correo electrónico
+              Email
             </label>
 
             <input
@@ -71,13 +96,22 @@ export default function AdminLoginPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder=""
-              autoComplete="email"
+              placeholder="tu@email.com"
               required
+              autoComplete="email"
+              style={{
+                width: "100%",
+                padding: "12px",
+                marginTop: "6px",
+                boxSizing: "border-box",
+              }}
             />
+
           </div>
 
-          <div className="admin-form-group">
+
+          <div style={{ marginBottom: "18px" }}>
+
             <label htmlFor="password">
               Contraseña
             </label>
@@ -87,30 +121,47 @@ export default function AdminLoginPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder=""
-              autoComplete="current-password"
+              placeholder="Contraseña"
               required
+              autoComplete="current-password"
+              style={{
+                width: "100%",
+                padding: "12px",
+                marginTop: "6px",
+                boxSizing: "border-box",
+              }}
             />
+
           </div>
 
+
           {error && (
-            <div className="admin-login-error">
+            <p
+              style={{
+                color: "#c0392b",
+                marginBottom: "15px",
+              }}
+            >
               {error}
-            </div>
+            </p>
           )}
+
 
           <button
             type="submit"
-            className="admin-login-button"
-            disabled={loading}
+            disabled={cargando}
+            style={{
+              width: "100%",
+              padding: "14px",
+              cursor: cargando ? "wait" : "pointer",
+            }}
           >
-            {loading ? "Accediendo..." : "Iniciar sesión"}
+            {cargando
+              ? "Entrando..."
+              : "Iniciar sesión"}
           </button>
-        </form>
 
-        <p className="admin-login-footer">
-          Área privada de Just Breathe
-        </p>
+        </form>
       </div>
     </main>
   );

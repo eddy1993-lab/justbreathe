@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
 type Reserva = {
@@ -15,14 +16,46 @@ type Reserva = {
 };
 
 export default function AdminPage() {
+  const router = useRouter();
+
   const [seccion, setSeccion] = useState("resumen");
   const [reservas, setReservas] = useState<Reserva[]>([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState("");
+  const [usuario, setUsuario] = useState<any>(null);
+  const [comprobandoSesion, setComprobandoSesion] = useState(true);
+
+  // ==========================================
+  // COMPROBAR SESIÓN
+  // ==========================================
 
   useEffect(() => {
-    cargarReservas();
-  }, []);
+    async function comprobarSesion() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        router.replace("/login");
+        return;
+      }
+
+      setUsuario(user);
+      setComprobandoSesion(false);
+    }
+
+    comprobarSesion();
+  }, [router]);
+
+  // ==========================================
+  // CARGAR RESERVAS CUANDO HAY SESIÓN
+  // ==========================================
+
+  useEffect(() => {
+    if (usuario) {
+      cargarReservas();
+    }
+  }, [usuario]);
 
   async function cargarReservas() {
     setCargando(true);
@@ -45,6 +78,37 @@ export default function AdminPage() {
     setCargando(false);
   }
 
+  // ==========================================
+  // CERRAR SESIÓN
+  // ==========================================
+
+  async function cerrarSesion() {
+    await supabase.auth.signOut();
+    router.replace("/login");
+  }
+
+  // ==========================================
+  // COMPROBANDO SESIÓN
+  // ==========================================
+
+  if (comprobandoSesion) {
+    return (
+      <main className="admin-page">
+        <div className="admin-empty">
+          <div>🔐</div>
+
+          <h3>
+            Comprobando acceso...
+          </h3>
+        </div>
+      </main>
+    );
+  }
+
+  // ==========================================
+  // PANEL
+  // ==========================================
+
   return (
     <main className="admin-page">
 
@@ -57,15 +121,40 @@ export default function AdminPage() {
             JUST BREATHE
           </span>
 
-          <h1>Panel de administración</h1>
+          <h1>
+            Panel de administración
+          </h1>
 
           <p>
             Gestiona tus clases, reservas, horarios y opiniones.
           </p>
         </div>
 
-        <div className="admin-avatar">
-          JB
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+          }}
+        >
+
+          <button
+            onClick={cerrarSesion}
+            style={{
+              padding: "10px 16px",
+              borderRadius: "10px",
+              border: "1px solid #ddd",
+              background: "#fff",
+              cursor: "pointer",
+            }}
+          >
+            Cerrar sesión
+          </button>
+
+          <div className="admin-avatar">
+            JB
+          </div>
+
         </div>
 
       </header>
@@ -82,7 +171,9 @@ export default function AdminPage() {
             onClick={() => setSeccion("resumen")}
           >
             📊
-            <span>Resumen</span>
+            <span>
+              Resumen
+            </span>
           </button>
 
           <button
@@ -90,7 +181,9 @@ export default function AdminPage() {
             onClick={() => setSeccion("reservas")}
           >
             📅
-            <span>Reservas</span>
+            <span>
+              Reservas
+            </span>
           </button>
 
           <button
@@ -98,7 +191,9 @@ export default function AdminPage() {
             onClick={() => setSeccion("clases")}
           >
             🧘
-            <span>Clases</span>
+            <span>
+              Clases
+            </span>
           </button>
 
           <button
@@ -106,7 +201,9 @@ export default function AdminPage() {
             onClick={() => setSeccion("horarios")}
           >
             🕐
-            <span>Horarios</span>
+            <span>
+              Horarios
+            </span>
           </button>
 
           <button
@@ -114,7 +211,9 @@ export default function AdminPage() {
             onClick={() => setSeccion("opiniones")}
           >
             ⭐
-            <span>Opiniones</span>
+            <span>
+              Opiniones
+            </span>
           </button>
 
           <button
@@ -122,7 +221,9 @@ export default function AdminPage() {
             onClick={() => setSeccion("contactos")}
           >
             ✉️
-            <span>Mensajes</span>
+            <span>
+              Mensajes
+            </span>
           </button>
 
         </aside>
@@ -139,12 +240,17 @@ export default function AdminPage() {
           {seccion === "resumen" && (
 
             <>
+
               <div className="admin-title">
 
                 <div>
-                  <span>BIENVENIDO</span>
+                  <span>
+                    BIENVENIDO
+                  </span>
 
-                  <h2>Resumen general</h2>
+                  <h2>
+                    Resumen general
+                  </h2>
                 </div>
 
               </div>
@@ -159,7 +265,9 @@ export default function AdminPage() {
                   </div>
 
                   <div>
-                    <span>Reservas</span>
+                    <span>
+                      Reservas
+                    </span>
 
                     <strong>
                       {reservas.length}
@@ -176,7 +284,9 @@ export default function AdminPage() {
                   </div>
 
                   <div>
-                    <span>Clases</span>
+                    <span>
+                      Clases
+                    </span>
 
                     <strong>
                       5
@@ -193,7 +303,9 @@ export default function AdminPage() {
                   </div>
 
                   <div>
-                    <span>Opiniones</span>
+                    <span>
+                      Opiniones
+                    </span>
 
                     <strong>
                       0
@@ -210,7 +322,9 @@ export default function AdminPage() {
                   </div>
 
                   <div>
-                    <span>Mensajes</span>
+                    <span>
+                      Mensajes
+                    </span>
 
                     <strong>
                       0
@@ -229,7 +343,9 @@ export default function AdminPage() {
                 <div className="admin-panel-header">
 
                   <div>
-                    <span>PRÓXIMAS RESERVAS</span>
+                    <span>
+                      PRÓXIMAS RESERVAS
+                    </span>
 
                     <h3>
                       Reservas recientes
@@ -246,20 +362,29 @@ export default function AdminPage() {
 
 
                 {cargando && (
+
                   <div className="admin-empty">
-                    <div>⏳</div>
+
+                    <div>
+                      ⏳
+                    </div>
 
                     <h3>
                       Cargando reservas...
                     </h3>
+
                   </div>
+
                 )}
 
 
                 {!cargando && error && (
+
                   <div className="admin-empty">
 
-                    <div>⚠️</div>
+                    <div>
+                      ⚠️
+                    </div>
 
                     <h3>
                       Error
@@ -270,6 +395,7 @@ export default function AdminPage() {
                     </p>
 
                   </div>
+
                 )}
 
 
@@ -279,7 +405,9 @@ export default function AdminPage() {
 
                     <div className="admin-empty">
 
-                      <div>📅</div>
+                      <div>
+                        📅
+                      </div>
 
                       <h3>
                         No hay reservas
@@ -357,7 +485,9 @@ export default function AdminPage() {
               <div className="admin-panel-header">
 
                 <div>
-                  <span>GESTIÓN</span>
+                  <span>
+                    GESTIÓN
+                  </span>
 
                   <h3>
                     Reservas
@@ -375,7 +505,9 @@ export default function AdminPage() {
 
                 <div className="admin-empty">
 
-                  <div>⏳</div>
+                  <div>
+                    ⏳
+                  </div>
 
                   <h3>
                     Cargando reservas...
@@ -390,7 +522,9 @@ export default function AdminPage() {
 
                 <div className="admin-empty">
 
-                  <div>⚠️</div>
+                  <div>
+                    ⚠️
+                  </div>
 
                   <h3>
                     Error
@@ -411,7 +545,9 @@ export default function AdminPage() {
 
                   <div className="admin-empty">
 
-                    <div>📅</div>
+                    <div>
+                      📅
+                    </div>
 
                     <h3>
                       No hay reservas
@@ -501,7 +637,9 @@ export default function AdminPage() {
               <div className="admin-panel-header">
 
                 <div>
-                  <span>JUST BREATHE</span>
+                  <span>
+                    JUST BREATHE
+                  </span>
 
                   <h3>
                     Tus clases
@@ -514,7 +652,9 @@ export default function AdminPage() {
               <div className="admin-clases">
 
                 <div className="admin-clase">
-                  <span>🪑</span>
+                  <span>
+                    🪑
+                  </span>
 
                   <div>
                     <strong>
@@ -529,7 +669,9 @@ export default function AdminPage() {
 
 
                 <div className="admin-clase">
-                  <span>🌿</span>
+                  <span>
+                    🌿
+                  </span>
 
                   <div>
                     <strong>
@@ -544,7 +686,9 @@ export default function AdminPage() {
 
 
                 <div className="admin-clase">
-                  <span>🧘</span>
+                  <span>
+                    🧘
+                  </span>
 
                   <div>
                     <strong>
@@ -559,7 +703,9 @@ export default function AdminPage() {
 
 
                 <div className="admin-clase">
-                  <span>🔥</span>
+                  <span>
+                    🔥
+                  </span>
 
                   <div>
                     <strong>
@@ -574,7 +720,9 @@ export default function AdminPage() {
 
 
                 <div className="admin-clase">
-                  <span>🌈</span>
+                  <span>
+                    🌈
+                  </span>
 
                   <div>
                     <strong>
@@ -605,7 +753,9 @@ export default function AdminPage() {
               <div className="admin-panel-header">
 
                 <div>
-                  <span>CALENDARIO</span>
+                  <span>
+                    CALENDARIO
+                  </span>
 
                   <h3>
                     Horarios y disponibilidad
@@ -646,7 +796,9 @@ export default function AdminPage() {
               <div className="admin-panel-header">
 
                 <div>
-                  <span>VALORACIONES</span>
+                  <span>
+                    VALORACIONES
+                  </span>
 
                   <h3>
                     Opiniones de clientes
@@ -687,7 +839,9 @@ export default function AdminPage() {
               <div className="admin-panel-header">
 
                 <div>
-                  <span>CONTACTO</span>
+                  <span>
+                    CONTACTO
+                  </span>
 
                   <h3>
                     Mensajes recibidos
